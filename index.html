@@ -2,474 +2,98 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Belajar Al-Qur'an | Tahsin & Tahfidz</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Integrasi Web ke Sheets</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-      body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        scroll-behavior: smooth;
-      }
-      /* Hide scrollbar for clean look but allow scrolling */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
-      }
-    </style>
   </head>
-  <body class="bg-slate-50 text-slate-800 antialiased">
-    <!-- Navbar -->
-    <nav
-      class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100"
-    >
-      <div
-        class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
-      >
-        <div class="flex items-center gap-2">
-          <div class="bg-emerald-500 text-white p-1.5 rounded-lg">
-            <svg
-              class="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              ></path>
-            </svg>
-          </div>
-          <span class="font-bold text-xl tracking-tight text-slate-900"
-            >Qur'anKu</span
-          >
+  <body class="bg-slate-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+      <h2 class="text-2xl font-bold mb-6 text-slate-800">
+        Kirim Pesan ke Sheets
+      </h2>
+
+      <!-- Form Input -->
+      <form id="formPesan" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Nama</label>
+          <input
+            type="text"
+            id="nama"
+            required
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         </div>
         <div>
-          <a
-            href="#daftar"
-            class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition-all shadow-sm shadow-emerald-200"
-            >Daftar Sekarang</a
-          >
+          <label class="block text-sm font-medium text-gray-700">Pesan</label>
+          <textarea
+            id="pesan"
+            required
+            class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+          ></textarea>
         </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header
-      class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center"
-    >
-      <div
-        class="inline-block mb-4 px-3 py-1 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-full text-xs font-semibold tracking-wide uppercase"
-      >
-        Pendaftaran Batch 10 Dibuka
-      </div>
-      <h1
-        class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight"
-      >
-        Perbaiki Bacaan,<br /><span class="text-emerald-600"
-          >Dekatkan Diri pada Al-Qur'an</span
-        >
-      </h1>
-      <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto">
-        Platform belajar Al-Qur'an online interaktif untuk semua usia. Mulai
-        dari Tahsin dasar hingga program Tahfidz intensif bersama guru
-        bersertifikat.
-      </p>
-      <a
-        href="#daftar"
-        class="inline-flex items-center justify-center bg-slate-900 hover:bg-slate-800 text-white px-8 py-3.5 rounded-full text-base font-semibold transition-all duration-300 hover:-translate-y-1 shadow-lg shadow-slate-300"
-      >
-        Mulai Belajar Sekarang
-      </a>
-    </header>
-
-    <!-- Program Section -->
-    <section class="bg-white py-16 border-y border-slate-100">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-slate-900">Pilihan Program</h2>
-          <p class="text-slate-500 mt-3">
-            Pilih kelas yang paling sesuai dengan kebutuhan Anda saat ini.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Card 1 -->
-          <div
-            class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group"
-          >
-            <div
-              class="bg-blue-100 text-blue-600 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Kelas Tahfidz</h3>
-            <p class="text-slate-500 text-sm mb-4">
-              Program hafalan intensif dengan target setoran mutqin. Cocok untuk
-              yang sudah lancar membaca.
-            </p>
-          </div>
-          <!-- Card 2 -->
-          <div
-            class="bg-slate-50 p-8 rounded-3xl border border-emerald-100 ring-2 ring-emerald-500/20 relative hover:shadow-xl hover:shadow-emerald-200/50 transition-all duration-300 group"
-          >
-            <div
-              class="absolute top-0 right-0 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-3xl"
-            >
-              Paling Diminati
-            </div>
-            <div
-              class="bg-emerald-100 text-emerald-600 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Tahsin Dewasa</h3>
-            <p class="text-slate-500 text-sm mb-4">
-              Perbaikan makhorijul huruf dan tajwid dari dasar hingga lancar.
-              Khusus usia 18 tahun ke atas.
-            </p>
-          </div>
-          <!-- Card 3 -->
-          <div
-            class="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 group"
-          >
-            <div
-              class="bg-orange-100 text-orange-600 w-12 h-12 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
-            >
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-bold mb-2">Tahsin Anak</h3>
-            <p class="text-slate-500 text-sm mb-4">
-              Mengenalkan huruf hijaiyah dan tajwid dasar dengan metode
-              menyenangkan untuk usia 6-12 tahun.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Form Pendaftaran Section -->
-    <section id="daftar" class="py-16 md:py-24">
-      <div class="max-w-xl mx-auto px-4 sm:px-6">
-        <div
-          class="bg-white p-8 md:p-10 rounded-3xl shadow-xl shadow-slate-200/40 border border-slate-100"
-        >
-          <h2 class="text-2xl font-bold text-center mb-2">
-            Formulir Pendaftaran
-          </h2>
-          <p class="text-center text-slate-500 text-sm mb-8">
-            Isi data diri Anda di bawah ini, proses cepat tanpa ribet.
-          </p>
-
-          <form
-            id="formDaftar"
-            onsubmit="handleDaftar(event)"
-            class="space-y-5"
-          >
-            <!-- Nama -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1"
-                >Nama Lengkap</label
-              >
-              <input
-                type="text"
-                id="nama"
-                required
-                placeholder="Cth: Abdullah"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
-              />
-            </div>
-            <!-- WA -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1"
-                >Nomor WhatsApp</label
-              >
-              <input
-                type="number"
-                id="noWa"
-                required
-                placeholder="Cth: 08123456789"
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-colors"
-              />
-            </div>
-            <!-- Program -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1"
-                >Pilih Program</label
-              >
-              <select
-                id="program"
-                required
-                class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none bg-white transition-colors"
-              >
-                <option value="" disabled selected>
-                  -- Pilih Salah Satu --
-                </option>
-                <option value="Kelas Tahfidz">Kelas Tahfidz</option>
-                <option value="Tahsin Dewasa">Tahsin Dewasa</option>
-                <option value="Tahsin Anak">Tahsin Anak</option>
-              </select>
-            </div>
-            <!-- Payment -->
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1"
-                >Metode Pembayaran</label
-              >
-              <div class="grid grid-cols-3 gap-3">
-                <label class="cursor-pointer">
-                  <input
-                    type="radio"
-                    name="metode"
-                    value="QRIS"
-                    class="peer sr-only"
-                    required
-                  />
-                  <div
-                    class="text-center p-3 rounded-xl border border-slate-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700 transition-all font-medium text-sm"
-                  >
-                    QRIS
-                  </div>
-                </label>
-                <label class="cursor-pointer">
-                  <input
-                    type="radio"
-                    name="metode"
-                    value="GoPay"
-                    class="peer sr-only"
-                  />
-                  <div
-                    class="text-center p-3 rounded-xl border border-slate-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700 transition-all font-medium text-sm"
-                  >
-                    GoPay
-                  </div>
-                </label>
-                <label class="cursor-pointer">
-                  <input
-                    type="radio"
-                    name="metode"
-                    value="Transfer Bank"
-                    class="peer sr-only"
-                  />
-                  <div
-                    class="text-center p-3 rounded-xl border border-slate-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 peer-checked:text-emerald-700 transition-all font-medium text-sm"
-                  >
-                    Transfer
-                  </div>
-                </label>
-              </div>
-            </div>
-
-            <!-- Tombol Submit -->
-            <button
-              type="submit"
-              id="btnSubmit"
-              class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl mt-4 transition-all duration-300 flex justify-center items-center gap-2"
-            >
-              <span>Daftar Sekarang</span>
-              <!-- Spinner (Hidden by default) -->
-              <svg
-                id="spinner"
-                class="animate-spin h-5 w-5 text-white hidden"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  class="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  stroke-width="4"
-                ></circle>
-                <path
-                  class="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            </button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Modal Pop-up Sukses & Redirect WA -->
-    <div
-      id="modalSuccess"
-      class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[60] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
-    >
-      <div
-        class="bg-white p-8 rounded-3xl max-w-sm w-full mx-4 text-center transform scale-95 transition-transform duration-300"
-        id="modalCard"
-      >
-        <div
-          class="w-16 h-16 bg-emerald-100 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4"
-        >
-          <svg
-            class="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            ></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold text-slate-900 mb-2">
-          Pendaftaran Berhasil!
-        </h3>
-        <p class="text-sm text-slate-500 mb-6">
-          Data Anda telah tersimpan. Silakan lanjutkan ke WhatsApp Admin untuk
-          proses pembayaran & penentuan jadwal.
-        </p>
         <button
-          id="btnWa"
-          onclick="goToWA()"
-          class="w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white font-bold py-3 rounded-xl transition-colors flex justify-center items-center gap-2"
+          type="submit"
+          id="btnSubmit"
+          class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition"
         >
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-            />
-          </svg>
-          Lanjutkan ke WA
+          Kirim Data
         </button>
-      </div>
+      </form>
+
+      <!-- Tempat nampilin notifikasi sukses/gagal -->
+      <p
+        id="notifikasi"
+        class="mt-4 text-center text-sm font-semibold hidden"
+      ></p>
     </div>
 
     <script>
-      // Nomor WA Admin (ganti dengan nomor asli pake format 62)
-      const waAdmin = "6281234567890";
-      let linkWaDinamis = "";
+      // MASUKIN URL WEB APP GAS LU DI SINI
+      const gasURL = "URL_WEB_APP_GAS_LU_YANG_PANJANG_ITU";
 
-      function handleDaftar(e) {
-        e.preventDefault(); // Mencegah reload halaman
+      const form = document.getElementById("formPesan");
+      const btnSubmit = document.getElementById("btnSubmit");
+      const notifikasi = document.getElementById("notifikasi");
 
-        // Ambil data dari form
-        const btn = document.getElementById("btnSubmit");
-        const spinner = document.getElementById("spinner");
-        const btnText = btn.querySelector("span");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Mencegah web reload saat tombol diklik
 
-        const formData = {
+        // Ubah teks tombol biar user tau lagi proses
+        btnSubmit.innerText = "Mengirim...";
+        btnSubmit.disabled = true;
+
+        // Ambil data dari inputan form
+        const dataYangDikirim = {
           nama: document.getElementById("nama").value,
-          noWa: document.getElementById("noWa").value,
-          program: document.getElementById("program").value,
-          // Cari radio button metode bayar yang diceklis
-          metodeBayar: document.querySelector('input[name="metode"]:checked')
-            .value,
+          pesan: document.getElementById("pesan").value,
         };
 
-        // Tampilkan status loading
-        btn.disabled = true;
-        btn.classList.add("opacity-75", "cursor-not-allowed");
-        btnText.textContent = "Memproses...";
-        spinner.classList.remove("hidden");
-
-        // Panggil fungsi di GAS backend (Code_Backend.gs)
-        google.script.run
-          .withSuccessHandler(function (response) {
-            if (response.success) {
-              // Berhasil simpan ke sheet
-              siapkanTemplateWA(response);
-              tampilkanModal();
-            } else {
-              alert("Gagal menyimpan data: " + response.message);
-              resetButton(btn, btnText, spinner);
-            }
+        // Proses pengiriman data ke Google Sheets via Fetch API (Si Pelayan)
+        fetch(gasURL, {
+          method: "POST",
+          // Trik rahasia: pakai text/plain biar gak kena blokir keamanan CORS browser
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(dataYangDikirim),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // Kalau sukses
+            notifikasi.innerText = data.pesan;
+            notifikasi.classList.remove("hidden", "text-red-600");
+            notifikasi.classList.add("text-green-600");
+            form.reset(); // Kosongin form
           })
-          .withFailureHandler(function (error) {
-            alert("Terjadi kesalahan koneksi.");
-            resetButton(btn, btnText, spinner);
+          .catch((error) => {
+            // Kalau gagal
+            notifikasi.innerText = "Gagal mengirim data!";
+            notifikasi.classList.remove("hidden", "text-green-600");
+            notifikasi.classList.add("text-red-600");
           })
-          .simpanPendaftaran(formData);
-      }
-
-      function resetButton(btn, btnText, spinner) {
-        btn.disabled = false;
-        btn.classList.remove("opacity-75", "cursor-not-allowed");
-        btnText.textContent = "Daftar Sekarang";
-        spinner.classList.add("hidden");
-      }
-
-      function siapkanTemplateWA(data) {
-        // Bikin template pesan otomatis untuk dikirim ke WA Admin
-        const text = `Assalamu'alaikum Admin,\n\nSaya mau konfirmasi pendaftaran kelas:\n\n*ID Daftar:* ${data.idDaftar}\n*Nama:* ${data.nama}\n*Program:* ${data.program}\n*Metode Pembayaran:* ${data.metodeBayar}\n\nMohon info rekening/QRIS untuk pembayaran. Terima kasih.`;
-
-        // Encode URI biar format spasinya aman di link
-        linkWaDinamis = `https://wa.me/${waAdmin}?text=${encodeURIComponent(text)}`;
-      }
-
-      function tampilkanModal() {
-        const modal = document.getElementById("modalSuccess");
-        const card = document.getElementById("modalCard");
-
-        modal.classList.remove("opacity-0", "pointer-events-none");
-        card.classList.remove("scale-95");
-        card.classList.add("scale-100");
-      }
-
-      function goToWA() {
-        // Redirect ke WhatsApp lalu reload page ini biar bersih
-        window.open(linkWaDinamis, "_blank");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      }
+          .finally(() => {
+            // Balikin tombol seperti semula
+            btnSubmit.innerText = "Kirim Data";
+            btnSubmit.disabled = false;
+          });
+      });
     </script>
   </body>
 </html>
